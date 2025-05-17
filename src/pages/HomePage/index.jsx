@@ -13,7 +13,6 @@ export const HomePage = () => {
 
   const navigate = useNavigate();
 
-
   const handleBuy = async () => {
     const response = await fetch(
       'https://apps.kodim.cz/daweb/leviexpress/api/reservation',
@@ -41,9 +40,13 @@ export const HomePage = () => {
         {journey === null ? '' : <SelectedSeat number={journey.autoSeat} />}
       </p>
       <div class="controls container">
-        <button onClick={handleBuy} class="btn btn--big" type="button">
-          Rezervovat
-        </button>
+        {journey === null ? (
+          ''
+        ) : (
+          <button onClick={handleBuy} class="btn btn--big" type="button">
+            Rezervovat
+          </button>
+        )}
       </div>
     </main>
   );

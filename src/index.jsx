@@ -13,12 +13,14 @@ const router = createBrowserRouter([
     children: [{
       path: '/',
       element: <HomePage />,
-    }]
+    },
+    {
+      path: '/reservation/:id',
+      element: <ReservationPage />,
+    }
+  ]
   },
-  {
-    path: '/reservation',
-    element: <ReservationPage />,
-  }
+  
 ]);
 
 createRoot(document.querySelector('#app')).render(
