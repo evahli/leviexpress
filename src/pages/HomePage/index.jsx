@@ -10,6 +10,7 @@ export const HomePage = () => {
   const [journey, setJourney] = useState(null);
   const handleJourneyChange = (journeyData) => {
     setJourney(journeyData);
+    console.log(journeyData)
   };
 
   const navigate = useNavigate();
@@ -37,15 +38,12 @@ export const HomePage = () => {
     <main>
       <JourneyPicker onJourneyChange={handleJourneyChange} />
       <p>{journey === null ? '' : <JourneyDetail journey={journey} />}</p>
-      <p>
-      <SeatPicker />
-        {journey === null ? '' : <SeatPicker /> }
-      </p>
-      <div class="controls container">
+      <p>{journey === null ? '' : <SeatPicker seats={journey.seats} />}</p>
+      <div className="controls container">
         {journey === null ? (
           ''
         ) : (
-          <button onClick={handleBuy} class="btn btn--big" type="button">
+          <button onClick={handleBuy} className="btn btn--big" type="button">
             Rezervovat
           </button>
         )}
