@@ -38,7 +38,7 @@ export const HomePage = () => {
     <main>
       <JourneyPicker onJourneyChange={handleJourneyChange} />
       <p>{journey === null ? '' : <JourneyDetail journey={journey} />}</p>
-      <p>{journey === null ? '' : <SeatPicker seats={journey.seats} />}</p>
+      <p>{journey === null ? '' : <SeatPicker seats={journey.seats} rowSelectedSeat={journey.autoSeat} />}</p>
       <div className="controls container">
         {journey === null ? (
           ''
