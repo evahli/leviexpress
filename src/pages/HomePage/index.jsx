@@ -1,6 +1,7 @@
 import { JourneyPicker } from '../../components/JourneyPicker';
 import { JourneyDetail } from '../../components/JourneyDetail/journeydetail';
 import { SelectedSeat } from '../../components/SelectedSeat/SelectedSeat';
+import { SeatPicker } from '../../components/SeatPicker/SeatPicker';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { use } from 'react';
@@ -37,7 +38,8 @@ export const HomePage = () => {
       <JourneyPicker onJourneyChange={handleJourneyChange} />
       <p>{journey === null ? '' : <JourneyDetail journey={journey} />}</p>
       <p>
-        {journey === null ? '' : <SelectedSeat number={journey.autoSeat} />}
+      <SeatPicker />
+        {journey === null ? '' : <SeatPicker /> }
       </p>
       <div class="controls container">
         {journey === null ? (
