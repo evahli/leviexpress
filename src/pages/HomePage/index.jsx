@@ -8,9 +8,10 @@ import { use } from 'react';
 
 export const HomePage = () => {
   const [journey, setJourney] = useState(null);
+  const [userSeat, setUserSeat] = useState(null);
   const handleJourneyChange = (journeyData) => {
     setJourney(journeyData);
-    console.log(journeyData)
+    setUserSeat(journeyData.autoSeat)
   };
 
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const HomePage = () => {
         },
         body: JSON.stringify({
           action: 'create',
-          seat: journey.autoSeat,
+          seat: userSeat,
           journeyId: journey.journeyId,
         }),
       },
@@ -34,11 +35,26 @@ export const HomePage = () => {
     const reservationId = responseData.results.reservationId;
     navigate(`/reservation/${reservationId}`);
   };
+
+  const finalSetUserSeat = (number) => {
+    setUserSeat(number)
+  }
+
   return (
     <main>
       <JourneyPicker onJourneyChange={handleJourneyChange} />
       <p>{journey === null ? '' : <JourneyDetail journey={journey} />}</p>
-      <p>{journey === null ? '' : <SeatPicker seats={journey.seats} rowSelectedSeat={journey.autoSeat} />}</p>
+      <p>
+        {journey === null ? (
+          ''
+        ) : (
+          <SeatPicker
+            seats={journey.seats}
+            rowSelectedSeat={userSeat}
+            onSeatSelected={finalSetUserSeat}
+          />
+        )}
+      </p>
       <div className="controls container">
         {journey === null ? (
           ''
